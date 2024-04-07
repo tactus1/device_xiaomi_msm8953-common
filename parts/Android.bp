@@ -15,7 +15,7 @@ android_app {
     privileged: true,
 
     static_libs: [
-        "org.aosp.settings.resources",
+        "com.aosp.settings.resources",
     ],
 
     optimize: {
