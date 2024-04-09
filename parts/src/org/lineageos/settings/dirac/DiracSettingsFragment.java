@@ -18,7 +18,7 @@ package org.lineageos.settings.dirac;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.CompoundButton;
+import android.widget.Switch;
 
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
@@ -27,11 +27,12 @@ import androidx.preference.PreferenceFragment;
 import androidx.preference.SwitchPreference;
 
 import com.android.settingslib.widget.MainSwitchPreference;
+import com.android.settingslib.widget.OnMainSwitchChangeListener;
 
 import org.lineageos.settings.R;
 
 public class DiracSettingsFragment extends PreferenceFragment implements
-        Preference.OnPreferenceChangeListener, CompoundButton.OnCheckedChangeListener {
+        Preference.OnPreferenceChangeListener, OnMainSwitchChangeListener {
 
     private static final String PREF_ENABLE = "dirac_enable";
     private static final String PREF_HEADSET = "dirac_headset_pref";
@@ -81,7 +82,7 @@ public class DiracSettingsFragment extends PreferenceFragment implements
     }
 
     @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+    public void onSwitchChanged(Switch switchView, boolean isChecked) {
         mDiracUtils.setEnabled(isChecked);
         if (isChecked) {
             mSwitchBar.setEnabled(false);
