@@ -144,7 +144,6 @@ PRODUCT_PACKAGES += \
 
 # DRM
 PRODUCT_PACKAGES += \
-    android.hardware.drm-service.clearkey \
     android.hardware.drm@1.4.vendor
 
 # Encryption
@@ -401,7 +400,6 @@ PRODUCT_COPY_FILES += \
 
 # Wifi
 PRODUCT_PACKAGES += \
-    android.hardware.wifi-service \
     libcld80211 \
     libwifi-hal-ctrl \
     libwpa_client \
