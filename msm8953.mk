@@ -4,6 +4,8 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+-include vendor/lineage-priv/keys/keys.mk
+
 # Setup dalvik vm configs
 $(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
 
@@ -110,10 +112,15 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.frameworks.sensorservice@1.0.vendor \
     android.hardware.camera.provider@2.4-impl \
-    android.hardware.camera.provider@2.4-service
+    android.hardware.camera.provider@2.4-service \
+    android.hardware.camera.provider@2.5
 
 PRODUCT_PACKAGES += \
     libstdc++_vendor
+
+# Configstore
+PRODUCT_PACKAGES += \
+    disable_configstore
 
 # Display
 PRODUCT_PACKAGES += \
@@ -187,12 +194,11 @@ PRODUCT_COPY_FILES += \
 
 # Health
 PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-impl \
-    android.hardware.health@2.1-service
+    android.hardware.health-service.qti
 
 ifneq ($(AB_OTA_UPDATER),true)
 PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-impl.recovery
+    android.hardware.health-service.qti_recovery
 endif
 
 # HIDL
@@ -212,6 +218,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libgui_shim \
     vendor.qti.hardware.camera.device@1.0
+
+PRODUCT_PACKAGES += \
+    libion.vendor
 
 # Input
 PRODUCT_COPY_FILES += \
@@ -331,12 +340,20 @@ PRODUCT_PACKAGES += \
     librmnetctl \
     libxml2
 
+PRODUCT_PACKAGES += \
+    libnetutils.vendor \
+    libsqlite.vendor \
+    libssl.vendor
+
 # Sensors
 PRODUCT_PACKAGES += \
     android.frameworks.sensorservice@1.0.vendor \
     android.hardware.sensors@1.0-impl \
     android.hardware.sensors@1.0-service \
     libsensorndkbridge
+
+PRODUCT_PACKAGES += \
+    libpower.vendor
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
@@ -390,8 +407,10 @@ PRODUCT_PACKAGES += \
 
 # Vibrator
 PRODUCT_PACKAGES += \
-    android.hardware.vibrator@1.0-impl \
-    android.hardware.vibrator@1.0-service
+    vendor.qti.hardware.vibrator.service
+
+PRODUCT_COPY_FILES += \
+    vendor/qcom/opensource/vibrator/excluded-input-devices.xml:$(TARGET_COPY_OUT_VENDOR)/etc/excluded-input-devices.xml
 
 # Whitelisted app
 PRODUCT_COPY_FILES += \
