@@ -169,5 +169,8 @@ WIFI_AVOID_IFACE_RESET_MAC_CHANGE := true
 WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
+# Compression
+PRODUCT_FS_COMPRESSION := 1
+
 # Inherit from the proprietary version
 include vendor/xiaomi/msm8953-common/BoardConfigVendor.mk
