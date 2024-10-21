@@ -65,6 +65,16 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     AntHalService
 
+# A/B
+AB_OTA_POSTINSTALL_CONFIG += \
+			         RUN_POSTINSTALL_product=true \
+				     POSTINSTALL_PATH_product=bin/check_dynamic_partitions \
+				         FILESYSTEM_TYPE_product=ext4 \
+					     POSTINSTALL_OPTIONAL_product=false
+PRODUCT_PACKAGES += \
+		        check_dynamic_partitions
+
+
 # Device-specific Settings
 PRODUCT_PACKAGES += \
     XiaomiParts
@@ -285,6 +295,12 @@ PRODUCT_PACKAGES += \
 # Network
 PRODUCT_PACKAGES += \
     android.system.net.netd@1.1.vendor
+
+# Partitions
+PRODUCT_RETROFIT_DYNAMIC_PARTITIONS := true
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
+
+
 
 # Perf
 PRODUCT_PACKAGES += \
